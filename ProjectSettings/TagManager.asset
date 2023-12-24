@@ -12,6 +12,7 @@ TagManager:
   - AIPlayer
   - bubble
   - cameras
+  - Path
   layers:
   - Default
   - TransparentFX

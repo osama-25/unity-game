@@ -9,7 +9,7 @@ public class Boost : MonoBehaviour
     private Car_Control car;
     public bool isboosting;
 
-    private float boostForce = 10f;
+    private float boostForce = 7f;
     private float decelerationFactor = 0.5f;
 
     private Rigidbody rb;
@@ -66,6 +66,10 @@ public class Boost : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             SetBoost(true);
+        }
+        else if(Input.GetKeyUp(KeyCode.Space))
+        {
+            SetBoost(false);
         }
         else
         {

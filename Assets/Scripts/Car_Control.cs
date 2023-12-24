@@ -54,7 +54,7 @@ public class Car_Control : MonoBehaviour
         WheelRR.motorTorque = maxTorque * Input.GetAxis("Vertical");
         WheelRL.motorTorque = maxTorque * Input.GetAxis("Vertical");
 
-        float maxSteerAngle = 20.0f;
+        float maxSteerAngle = 25.0f;
         float steeringSpeed = 2.0f;
 
         float targetSteerAngle = maxSteerAngle * Input.GetAxis("Horizontal");

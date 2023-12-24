@@ -6,7 +6,7 @@ public class startgame : MonoBehaviour
 {
     private GameObject[] cars;
     private GameObject[] aicars;
-    private void Awake()
+    private void Start()
     {
         cars = GameObject.FindGameObjectsWithTag("Player");
         aicars = GameObject.FindGameObjectsWithTag("AIPlayer");

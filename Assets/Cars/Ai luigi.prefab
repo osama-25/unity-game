@@ -20234,7 +20234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b3030b4208b0304bb1cca70c7d29bad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  missile: {fileID: 0}
+  missile: {fileID: 1111213149996021522, guid: f900ba6026eac0c41a89f4fd58a24022, type: 3}
   m1: {fileID: 8564073632232917801}
   m2: {fileID: 3843063998519024344}
   m3: {fileID: 2075589769259558910}
@@ -25726,7 +25726,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: f57e62db0f9b25c4780b22c10c2af4e9,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: f57e62db0f9b25c4780b22c10c2af4e9,
         type: 3}
@@ -25736,7 +25736,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: f57e62db0f9b25c4780b22c10c2af4e9,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: f57e62db0f9b25c4780b22c10c2af4e9,
         type: 3}
@@ -25751,7 +25751,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: f57e62db0f9b25c4780b22c10c2af4e9,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: f57e62db0f9b25c4780b22c10c2af4e9,
         type: 3}
@@ -25872,7 +25872,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &3049791354017423519
 MonoBehaviour:
@@ -25899,13 +25899,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3340069817832651778}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd1aff3bab2cf814a8040ff95d0e53e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   path: {fileID: 0}
-  maxsteerangle: 20
+  maxsteerangle: 40
   FrontR: {fileID: 4371429764411010667}
   FrontL: {fileID: 1470991927882405757}
   BackR: {fileID: 5355656477638427344}
@@ -25962,7 +25962,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 12.438946, y: 11.009073, z: 20.269314}
   m_Center: {x: -0.000015018492, y: 2.2128894, z: -0.034058187}
