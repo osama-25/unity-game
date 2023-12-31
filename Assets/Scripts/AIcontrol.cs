@@ -61,6 +61,10 @@ public class AIcontrol : MonoBehaviour
         {
             maxmotortorque = waluigimotortorque;
         }
+        else
+        {
+            maxmotortorque = waluigimotortorque;
+        }
     }
     private void FixedUpdate()
     {
@@ -112,9 +116,9 @@ public class AIcontrol : MonoBehaviour
     }
     private void RotateWheels()
     {
-        FrontLMesh.Rotate(0, 0, FrontL.rpm / 60 * 360 * Time.deltaTime);
-        FrontRMesh.Rotate(0, 0, FrontR.rpm / 60 * 360 * Time.deltaTime);
-        BackLMesh.Rotate(0, 0, BackL.rpm / 60 * 360 * Time.deltaTime);
-        BackRMesh.Rotate(0, 0, BackR.rpm / 60 * 360 * Time.deltaTime);
+        FrontLMesh.Rotate(FrontL.rpm / 60 * 360 * Time.deltaTime, 0, 0);
+        FrontRMesh.Rotate(FrontR.rpm / 60 * 360 * Time.deltaTime, 0, 0);
+        BackLMesh.Rotate(BackL.rpm / 60 * 360 * Time.deltaTime, 0, 0);
+        BackRMesh.Rotate(BackR.rpm / 60 * 360 * Time.deltaTime, 0, 0);
     }
 }

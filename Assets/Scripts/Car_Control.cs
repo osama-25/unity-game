@@ -21,6 +21,9 @@ public class Car_Control : MonoBehaviour
     public Transform centreofmass;
     public float maxTorque = 200;
 
+    private float horizontalaxis;
+    private float verticalaxis;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -29,11 +32,21 @@ public class Car_Control : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (gameObject.GetComponent<player_number>().number == 2)
+        {
+            horizontalaxis = Input.GetAxis("Horizontal2");
+            verticalaxis = Input.GetAxis("Vertical2");
+        }
+        else
+        {
+            horizontalaxis = Input.GetAxis("Horizontal");
+            verticalaxis = Input.GetAxis("Vertical");
+        }
         //for tyre rotate
-        WheelFLtrans.Rotate(0, 0, WheelFL.rpm / 60 * 360 * Time.deltaTime);
-        WheelFRtrans.Rotate(0, 0, WheelFR.rpm / 60 * 360 * Time.deltaTime);
-        WheelRLtrans.Rotate(0, 0, WheelRL.rpm / 60 * 360 * Time.deltaTime);
-        WheelRRtrans.Rotate(0, 0, WheelRR.rpm / 60 * 360 * Time.deltaTime);
+        WheelFLtrans.Rotate(WheelFL.rpm / 60 * 360 * Time.deltaTime, 0, 0);
+        WheelFRtrans.Rotate(WheelFR.rpm / 60 * 360 * Time.deltaTime, 0, 0);
+        WheelRLtrans.Rotate(WheelRL.rpm / 60 * 360 * Time.deltaTime, 0, 0);
+        WheelRRtrans.Rotate(WheelRR.rpm / 60 * 360 * Time.deltaTime, 0, 0);
 
         Vector3 temp = WheelFLtrans.localEulerAngles;
         Vector3 temp1 = WheelFRtrans.localEulerAngles;
@@ -51,13 +64,13 @@ public class Car_Control : MonoBehaviour
         eulertest = WheelFLtrans.localEulerAngles;
         //speed of car, Car will move as you will provide the input to it.
 
-        WheelRR.motorTorque = maxTorque * Input.GetAxis("Vertical");
-        WheelRL.motorTorque = maxTorque * Input.GetAxis("Vertical");
+        WheelRR.motorTorque = maxTorque * verticalaxis;
+        WheelRL.motorTorque = maxTorque * verticalaxis;
 
         float maxSteerAngle = 25.0f;
         float steeringSpeed = 2.0f;
 
-        float targetSteerAngle = maxSteerAngle * Input.GetAxis("Horizontal");
+        float targetSteerAngle = maxSteerAngle * horizontalaxis;
 
         // Smoothly interpolate the current steering angle towards the target angle
         WheelFL.steerAngle = Mathf.Lerp(WheelFL.steerAngle, targetSteerAngle, Time.deltaTime * steeringSpeed);

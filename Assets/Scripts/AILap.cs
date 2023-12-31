@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class AILap : MonoBehaviour
@@ -19,7 +20,14 @@ public class AILap : MonoBehaviour
             if (lapcount == 3)
             {
                 stopcar();
-                RaceManager.CheckWinner("ai");
+                if (SceneManager.GetActiveScene().name == "CasualScene")
+                {
+                    CasualRaceManager.finishpos++;
+                }
+                else
+                {
+                    RaceManager.CheckWinner("ai");
+                }
             }
         }
         else if (other.CompareTag("lap") && lapcount == 0)

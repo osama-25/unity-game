@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Lap : MonoBehaviour
@@ -10,7 +11,21 @@ public class Lap : MonoBehaviour
     private bool checkflag = false;
     private void Start()
     {
-        laptext = GameObject.FindGameObjectWithTag("canvas").transform.GetChild(0).GetChild(3).GetComponent<Text>();
+        if (SceneManager.GetActiveScene().name == "CasualScene")
+        {
+            if (gameObject.GetComponent<player_number>().number == 1)
+            {
+                laptext = GameObject.FindGameObjectWithTag("canvas").transform.GetChild(0).GetChild(0).GetChild(3).GetComponent<Text>();
+            }
+            else
+            {
+                laptext = GameObject.FindGameObjectWithTag("canvas").transform.GetChild(1).GetChild(0).GetChild(3).GetComponent<Text>();
+            }
+        }
+        else
+        {
+            laptext = GameObject.FindGameObjectWithTag("canvas").transform.GetChild(0).GetChild(3).GetComponent<Text>();
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -24,7 +39,23 @@ public class Lap : MonoBehaviour
             laptext.text = $"Lap {lapcount}/2";
             if (lapcount == 3)
             {
-                RaceManager.CheckWinner("player");
+                if (SceneManager.GetActiveScene().name == "CasualScene")
+                {
+                    if (gameObject.GetComponent<player_number>().number == 1)
+                    {
+                        CasualRaceManager.finishpos++;
+                        CasualRaceManager.FinishRace1();
+                    }
+                    else
+                    {
+                        CasualRaceManager.finishpos++;
+                        CasualRaceManager.FinishRace2();
+                    }
+                }
+                else
+                {
+                    RaceManager.CheckWinner("player");
+                }
             }
         }
         else if (other.CompareTag("lap") && lapcount == 0)

@@ -13,6 +13,7 @@ public class BubbleShieldScript : MonoBehaviour
     {
         if (other.CompareTag("weapon"))
         {
+            Debug.Log("hit");
             Destroy(other);
         }
     }

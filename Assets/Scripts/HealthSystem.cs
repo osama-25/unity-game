@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class HealthSystem : MonoBehaviour
@@ -10,14 +11,27 @@ public class HealthSystem : MonoBehaviour
     public float life = 3;
     private void Start()
     {
-        heart1 = GameObject.FindGameObjectWithTag("canvas").transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>();
-        heart2 = GameObject.FindGameObjectWithTag("canvas").transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<Image>();
-        heart3 = GameObject.FindGameObjectWithTag("canvas").transform.GetChild(0).GetChild(0).GetChild(2).GetComponent<Image>();
-    }
-    // Update is called once per frame
-    void Update()
-    {
-
+        if (SceneManager.GetActiveScene().name == "CasualScene")
+        {
+            if (gameObject.GetComponent<player_number>().number == 1)
+            {
+                heart1 = GameObject.FindGameObjectWithTag("canvas").transform.GetChild(0).GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>();
+                heart2 = GameObject.FindGameObjectWithTag("canvas").transform.GetChild(0).GetChild(0).GetChild(0).GetChild(1).GetComponent<Image>();
+                heart3 = GameObject.FindGameObjectWithTag("canvas").transform.GetChild(0).GetChild(0).GetChild(0).GetChild(2).GetComponent<Image>();
+            }
+            else
+            {
+                heart1 = GameObject.FindGameObjectWithTag("canvas").transform.GetChild(1).GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>();
+                heart2 = GameObject.FindGameObjectWithTag("canvas").transform.GetChild(1).GetChild(0).GetChild(0).GetChild(1).GetComponent<Image>();
+                heart3 = GameObject.FindGameObjectWithTag("canvas").transform.GetChild(1).GetChild(0).GetChild(0).GetChild(2).GetComponent<Image>();
+            }
+        }
+        else
+        {
+            heart1 = GameObject.FindGameObjectWithTag("canvas").transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Image>();
+            heart2 = GameObject.FindGameObjectWithTag("canvas").transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<Image>();
+            heart3 = GameObject.FindGameObjectWithTag("canvas").transform.GetChild(0).GetChild(0).GetChild(2).GetComponent<Image>();
+        }
     }
     public void checkhearts()
     {

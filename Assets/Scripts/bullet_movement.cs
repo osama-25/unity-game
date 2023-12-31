@@ -22,11 +22,13 @@ public class bullet_movement : MonoBehaviour
             {
                 other.transform.parent.gameObject.GetComponent<HealthSystem>().life -= 0.5f;
                 other.transform.parent.gameObject.GetComponent<HealthSystem>().checkhearts();
+                Destroy(gameObject);
             }
             else if (other.transform.parent.CompareTag("AIPlayer"))
             {
                 other.transform.parent.gameObject.GetComponent<AIHealthSystem>().life -= 0.5f;
                 other.transform.parent.gameObject.GetComponent<AIHealthSystem>().checkhearts();
+                Destroy(gameObject);
             }
         }
     }

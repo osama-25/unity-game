@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class RaceManager : MonoBehaviour
@@ -10,8 +11,6 @@ public class RaceManager : MonoBehaviour
     public static int playercheckpoint = 0, aicheckpoint = 0;
     public static Text postext;
 
-    public static AILap ailap;
-    public static Lap lap;
     public static bool flag = true;
 
     public static Text resulttext, first, second;
@@ -20,8 +19,6 @@ public class RaceManager : MonoBehaviour
     {
         finishscene = GameObject.FindGameObjectWithTag("cameras").transform.GetChild(1).gameObject;
         postext = GameObject.FindGameObjectWithTag("canvas").transform.GetChild(0).GetChild(4).GetComponent<Text>();
-        ailap = GameObject.FindGameObjectWithTag("AIPlayer").GetComponent<AILap>();
-        lap = GameObject.FindGameObjectWithTag("Player").GetComponent<Lap>();
         resulttext = GameObject.FindGameObjectWithTag("canvas").transform.GetChild(1).GetChild(0).GetComponent<Text>();
         first = GameObject.FindGameObjectWithTag("canvas").transform.GetChild(1).GetChild(1).GetComponent<Text>();
         second = GameObject.FindGameObjectWithTag("canvas").transform.GetChild(1).GetChild(2).GetComponent<Text>();
@@ -70,6 +67,25 @@ public class RaceManager : MonoBehaviour
         else
         {
             finishscene.transform.GetChild(1).GetComponent<CinemachineVirtualCamera>().LookAt = GameObject.FindGameObjectWithTag("AIPlayer").transform;
+        }
+    }
+    public void GameEnded()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+    public void Win()
+    {
+        if (SceneManager.GetActiveScene().name == "NormalScene")
+        {
+            PlayerManager.ChosenPlayer.level1 = true;
+        }
+        else if (SceneManager.GetActiveScene().name == "SnowyScene")
+        {
+            PlayerManager.ChosenPlayer.level2 = true;
+        }
+        else if (SceneManager.GetActiveScene().name == "RainyScene")
+        {
+            PlayerManager.ChosenPlayer.level3 = true;
         }
     }
 }

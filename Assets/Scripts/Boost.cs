@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Boost : MonoBehaviour
@@ -22,8 +23,22 @@ public class Boost : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        boostbar = GameObject.FindGameObjectWithTag("canvas").transform.GetChild(0).GetChild(1).GetComponent<Slider>();
         car = GetComponent<Car_Control>();
+        if (SceneManager.GetActiveScene().name == "CasualScene")
+        {
+            if (gameObject.GetComponent<player_number>().number == 1)
+            {
+                boostbar = GameObject.FindGameObjectWithTag("canvas").transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<Slider>();
+            }
+            else
+            {
+                boostbar = GameObject.FindGameObjectWithTag("canvas").transform.GetChild(1).GetChild(0).GetChild(1).GetComponent<Slider>();
+            }
+        }
+        else
+        {
+            boostbar = GameObject.FindGameObjectWithTag("canvas").transform.GetChild(0).GetChild(1).GetComponent<Slider>();
+        }
         boostbar.maxValue = maxboost;
         boostbar.value = boost;
     }
@@ -63,17 +78,41 @@ public class Boost : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (SceneManager.GetActiveScene().name == "CasualScene")
         {
-            SetBoost(true);
-        }
-        else if(Input.GetKeyUp(KeyCode.Space))
-        {
-            SetBoost(false);
+            if (gameObject.GetComponent<player_number>().number == 1)
+            {
+                if (Input.GetKey(KeyCode.Space))
+                {
+                    SetBoost(true);
+                }
+                else
+                {
+                    SetBoost(false);
+                }
+            }
+            else
+            {
+                if (Input.GetKey(KeyCode.RightControl))
+                {
+                    SetBoost(true);
+                }
+                else
+                {
+                    SetBoost(false);
+                }
+            }
         }
         else
         {
-            SetBoost(false);
+            if (Input.GetKey(KeyCode.Space))
+            {
+                SetBoost(true);
+            }
+            else 
+            {
+                SetBoost(false);
+            }
         }
     }
     IEnumerator generateboost()
