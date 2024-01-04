@@ -32,10 +32,12 @@ public class AIcontrol : MonoBehaviour
     private int currentnode = 0;
     void Start()
     {
+        // get path object from scene
         path = GameObject.FindGameObjectWithTag("Path").GetComponent<Transform>();
 
-        Getspeed();
+        Getspeed(); // change speed according to level
 
+        // get all nodes in path and store them in nodes list
         Transform[] pathtransforms = path.GetComponentsInChildren<Transform>();
         nodes = new List<Transform>();
 
@@ -68,11 +70,11 @@ public class AIcontrol : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        ApplySteer();
-        Drive();
-        CheckWaypointDistance();
-        LerpSteerAngle();
-        RotateWheels();
+        ApplySteer(); // steer the wheel to next node
+        Drive(); // move the car
+        CheckWaypointDistance(); // check if distance between car and node is less than x then change to next node
+        LerpSteerAngle(); // smooth car turns
+        RotateWheels(); // rotate car mesh with wheel collider
     }
     private void ApplySteer()
     {

@@ -15,8 +15,12 @@ public class RaceManager : MonoBehaviour
 
     public static Text resulttext, first, second;
     public static GameObject finishscene;
+
+    private static GameObject player, aiplayer;
     private void Start()
     {
+        aiplayer = GameObject.FindGameObjectWithTag("AIPlayer");
+        player = GameObject.FindGameObjectWithTag("Player");
         finishscene = GameObject.FindGameObjectWithTag("cameras").transform.GetChild(1).gameObject;
         postext = GameObject.FindGameObjectWithTag("canvas").transform.GetChild(0).GetChild(4).GetComponent<Text>();
         resulttext = GameObject.FindGameObjectWithTag("canvas").transform.GetChild(1).GetChild(0).GetComponent<Text>();
@@ -40,16 +44,16 @@ public class RaceManager : MonoBehaviour
                 finishscene.transform.GetChild(3).gameObject.SetActive(true);
                 resulttext.text = "You Lost";
                 resulttext.color = Color.red;
-                first.text = "1- " + GameObject.FindGameObjectWithTag("AIPlayer").name;
-                second.text = "2- " + GameObject.FindGameObjectWithTag("Player").name + " (You)";
+                first.text = "1- " + aiplayer.name;
+                second.text = "2- " + player.name + " (You)";
             }
             else if (winner == "player")
             {
                 setcamera("you");
                 finishscene.transform.GetChild(2).gameObject.SetActive(true);
                 resulttext.text = "You Won";
-                first.text = "1- " + GameObject.FindGameObjectWithTag("Player").name + " (You)";
-                second.text = "2- " + GameObject.FindGameObjectWithTag("AIPlayer").name;
+                first.text = "1- " + player.name + " (You)";
+                second.text = "2- " + aiplayer.name;
             }
         }
     }
@@ -87,5 +91,9 @@ public class RaceManager : MonoBehaviour
         {
             PlayerManager.ChosenPlayer.level3 = true;
         }
+    }
+    private void OnApplicationQuit()
+    {
+        Database.Save(); // incase the player turns off the game in this scene to save the data
     }
 }

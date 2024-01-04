@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public enum Gender { Male, Female}
-public class Player : MonoBehaviour
+public class Player 
 {
     public string Name;
     public Gender Gender;
